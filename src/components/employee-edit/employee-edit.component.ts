@@ -4,7 +4,6 @@ import { EmployeeService } from 'src/services/employee.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Position } from 'src/models/position.enum';
 
-
 @Component({
   selector: 'app-employee-edit',
   templateUrl: './employee-edit.component.html',
@@ -54,8 +53,7 @@ export class EmployeeEditComponent implements OnInit {
       this.router.navigate(['/employees']);
     }
   }
-  onCancel(): void{
+  onCancel(): void {
     this.router.navigate(['/employees']);
   }
 }
-

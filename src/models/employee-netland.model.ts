@@ -1,5 +1,3 @@
-import { Position } from './position.enum';
-
 interface EditingFlags {
   [key: string]: boolean | undefined;
 }
