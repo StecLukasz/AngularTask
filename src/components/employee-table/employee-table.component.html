@@ -1,5 +1,5 @@
 <div class="table-container">
-  <table>
+  <table *ngIf="employees.length > 0">
     <tr>
       <th>Full name</th>
       <th>Age</th>
@@ -70,6 +70,7 @@
       </td>
     </tr>
   </table>
+  <p *ngIf="employees.length === 0" class="no-records">No records.</p>
   <button
     mat-raised-button
     color="primary"
