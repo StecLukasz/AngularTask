@@ -1,0 +1,38 @@
+<div class="container">
+  <h2>Edit employee</h2>
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="employee-form">
+    <div class="form-group">
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        placeholder="Enter name..."
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="number"
+        id="age"
+        formControlName="age"
+        min="18"
+        placeholder="Enter age..."
+      />
+    </div>
+    <div class="form-group horizontal">
+      <label for="fullTime">Full Time?</label>
+      <input type="checkbox" id="fullTime" formControlName="isFullTime" />
+    </div>
+    <div class="form-group">
+      <select id="position" formControlName="position">
+        <option value="" disabled>Select position...</option>
+        <option *ngFor="let position of positions" [value]="position">
+          {{ position }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group-buttons">
+      <button mat-raised-button color="primary" type="submit">Save changes</button>
+      <button mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</div>

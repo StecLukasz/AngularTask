@@ -1,0 +1,81 @@
+<div class="table-container">
+  <table>
+    <tr>
+      <th>Full name</th>
+      <th>Age</th>
+      <th>Full Time</th>
+      <th>Position</th>
+      <th>Actions</th>
+    </tr>
+    <tr *ngFor="let employee of employees; let i = index">
+      <td (click)="startEdit(employee)">{{ employee.name }}</td>
+      <td>{{ employee.age }}</td>
+      <td>{{ employee.isFullTime ? "Yes" : "No" }}</td>
+      <td>{{ employee.position }}</td>
+      <td class="action-buttons">
+        <button
+          class="edit-button"
+          mat-icon-button
+          color="basic"
+          (click)="onEdit(i)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          class="delete-button"
+          mat-icon-button
+          color="warn"
+          (click)="onDelete(employee.id)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </tr>
+    <tr *ngIf="editedEmployee">
+      <td>
+        <input
+          [(ngModel)]="editedEmployee.name"
+          (keyup.enter)="confirmEdit(editedEmployee)"
+        />
+      </td>
+      <td>
+        <input
+          type="number"
+          [(ngModel)]="editedEmployee.age"
+          (keyup.enter)="confirmEdit(editedEmployee)"
+        />
+      </td>
+      <td>
+        <input
+          type="checkbox"
+          [(ngModel)]="editedEmployee.isFullTime"
+          (keyup.enter)="confirmEdit(editedEmployee)"
+        />
+      </td>
+      <td>
+        <span *ngIf="!editedEmployee.isEditing">{{
+          editedEmployee.position
+        }}</span>
+        <select
+          *ngIf="editedEmployee.isEditing"
+          [(ngModel)]="editedEmployee.position"
+          (change)="confirmEdit(editedEmployee)"
+        >
+          <option *ngFor="let pos of positions" [value]="pos">{{ pos }}</option>
+        </select>
+      </td>
+      <td>
+        <button (click)="confirmEdit(editedEmployee)">Save</button>
+        <button (click)="cancelEdit()">Cancel</button>
+      </td>
+    </tr>
+  </table>
+  <button
+    mat-raised-button
+    color="primary"
+    class="add-employee-button"
+    (click)="onAdd()"
+  >
+    <i class="material-icons-outlined">person_add</i>
+  </button>
+</div>
